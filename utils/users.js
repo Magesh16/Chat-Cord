@@ -11,8 +11,21 @@ function userJoin(id, username, room) {
 
 // GET CURRENT USER
 function getCurrentUser(id) {
-  return users.find(user => user.id === id);
+  return users.find((user) => user.id === id);
+}
+// USERS LEAVE CHAT
+
+function userLeave(id) {
+  const index = users.findIndex((user) => user.id === id);
+
+  if (index !== -1) {
+    return users.splice(index, 1)[0];
+  }
 }
 
+// GET ROOM CHAT
+function getRoomUsers(room) {
+  return users.filter((user) => user.room === room);
+}
 
-module.exports ={userJoin,getCurrentUser};
+module.exports = { userJoin, getCurrentUser, userLeave, getRoomUsers };
